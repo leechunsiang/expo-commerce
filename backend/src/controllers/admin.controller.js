@@ -75,7 +75,7 @@ export async function updateProduct(req, res) {
     if (name) product.name = name
     if (description) product.description = description
     if (price !== undefined) product.price = parseFloat(price)
-    if (stock) product.stock = parseInt(stock)
+    if (stock !== undefined) product.stock = parseInt(stock, 10)
     if (category) product.category = category
 
     // Handle image uploads if new images are provided

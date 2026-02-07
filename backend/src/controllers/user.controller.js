@@ -1,5 +1,3 @@
-import { Router } from "express"
-import { addAddress } from "../controllers/user.controller.js"
 import { User } from "../models/user.model.js"
 
 export async function addAddress(req, res) {

@@ -3,7 +3,7 @@ import { Product } from "../models/product.model.js"
 
 export async function getCart(req, res) {
   try {
-    let cart = await Cart.findOne({ clerId: req.user.clerkId }).populate(
+    let cart = await Cart.findOne({ clerkId: req.user.clerkId }).populate(
       "items.product",
     )
     if (!cart) {

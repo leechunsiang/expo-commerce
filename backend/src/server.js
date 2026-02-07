@@ -18,8 +18,8 @@ const app = express()
 const __dirname = path.resolve()
 
 app.use(express.json())
-app.use(clerkMiddleware()) //adds auth object under the req => req.auth
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true })) // credentials true to allow cookies
+app.use(clerkMiddleware()) //adds auth object under the req => req.auth
 
 app.use("/api/inngest", serve({ client: inngest, functions }))
 

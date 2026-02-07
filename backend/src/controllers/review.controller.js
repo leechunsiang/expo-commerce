@@ -15,7 +15,7 @@ export async function createReview(req, res) {
     const user = req.user
 
     //verify order exists and it is delivered
-    const order = await Order.find
+    const order = await Order.findById(orderId)
     if (!order) {
       return res.status(404).json({ message: "Order not found." })
     }
@@ -54,9 +54,9 @@ export async function createReview(req, res) {
     }
 
     const review = await Review.create({
-      productIdm,
+      productId,
       userId: user._id,
-      ordedrId,
+      orderId,
       rating,
     })
 

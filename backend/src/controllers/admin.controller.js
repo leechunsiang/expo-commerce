@@ -184,3 +184,14 @@ export async function getDashboardStats(_, res) {
     return res.status(500).json({ message: "Internal Server error." })
   }
 }
+
+export async function deleteProduct(req, res) {
+  try {
+    const { id } = req.params
+    await Product.findByIdAndDelete(id)
+    res.status(200).json({ message: "Product deleted successfully." })
+  } catch (error) {
+    console.log("Error deleting product:", error)
+    return res.status(500).json({ message: "Internal Server error." })
+  }
+}

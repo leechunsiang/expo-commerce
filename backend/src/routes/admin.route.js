@@ -9,6 +9,7 @@ import { getAllOrders } from "../controllers/admin.controller.js"
 import { updateOrderStatus } from "../controllers/admin.controller.js"
 import { getAllCustomers } from "../controllers/admin.controller.js"
 import { getDashboardStats } from "../controllers/admin.controller.js"
+import { deleteProduct } from "../controllers/admin.controller.js"
 
 const router = Router()
 
@@ -18,6 +19,7 @@ router.use(protectRoute, adminOnly)
 router.post("/products", upload.array("images", 3), createProduct)
 router.get("/products", getAllProducts)
 router.put("/products/:id", upload.array("images", 3), updateProduct)
+router.delete("/products/:id", deleteProduct) // TODO: delete product controller
 
 router.get("/orders", getAllOrders)
 router.patch("/orders/:orderId/status", updateOrderStatus)

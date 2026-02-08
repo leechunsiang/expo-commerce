@@ -3,9 +3,8 @@ import React from "react"
 
 const LoginPage = () => {
   return (
-    <div className="text-white">
+    <div className="h-screen flex justify-center items-center">
       <SignIn />
-      Login Page
     </div>
   )
 }

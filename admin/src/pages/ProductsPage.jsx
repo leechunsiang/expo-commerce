@@ -23,6 +23,8 @@ function ProductsPage() {
   const [images, setImages] = useState([])
   const [imagePreviews, setImagePreviews] = useState([])
 
+  const [deletingProductId, setDeletingProductId] = useState(null)
+
   const queryClient = useQueryClient()
 
   // fetch some data
@@ -53,6 +55,10 @@ function ProductsPage() {
     onSuccess: () => {
       closeModal()
       queryClient.invalidateQueries({ queryKey: ["products"] })
+      setDeletingProductId(null)
+    },
+    onError: () => {
+      setDeletingProductId(null)
     },
   })
 
@@ -195,9 +201,13 @@ function ProductsPage() {
                     </button>
                     <button
                       className="btn btn-square btn-ghost text-error"
-                      onClick={() => deleteProductMutation.mutate(product._id)}
+                      onClick={() => {
+                        setDeletingProductId(product._id)
+                        deleteProductMutation.mutate(product._id)
+                      }}
+                      disabled={deletingProductId === product._id}
                     >
-                      {deleteProductMutation.isPending ? (
+                      {deletingProductId === product._id ? (
                         <span className="loading loading-spinner"></span>
                       ) : (
                         <Trash2Icon className="w-5 h-5" />
@@ -266,6 +276,7 @@ function ProductsPage() {
                   <option value="Accessories">Accessories</option>
                   <option value="Fashion">Fashion</option>
                   <option value="Sports">Sports</option>
+                  <option value="Books">Books</option>
                 </select>
               </div>
             </div>

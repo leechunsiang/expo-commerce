@@ -50,7 +50,7 @@ function OrdersPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="table">
-                <theads>
+                <thead>
                   <tr>
                     <th>Order ID</th>
                     <th>Customer</th>
@@ -59,7 +59,7 @@ function OrdersPage() {
                     <th>Status</th>
                     <th>Date</th>
                   </tr>
-                </theads>
+                </thead>
 
                 <tbody>
                   {orders.map(order => {

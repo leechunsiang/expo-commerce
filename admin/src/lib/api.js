@@ -1,4 +1,4 @@
-import axiosInstance from "axios"
+import axiosInstance from "./axios"
 
 export const productApi = {
   getAll: async () => {
@@ -15,6 +15,11 @@ export const productApi = {
     const { data } = await axiosInstance.put(`/admin/products/${id}`, formData)
     return data
   },
+
+  delete: async productId => {
+    const { data } = await axiosInstance.delete(`/admin/products/${productId}`)
+    return data
+  },
 }
 
 export const orderApi = {
@@ -23,7 +28,7 @@ export const orderApi = {
     return data
   },
 
-  update: async ({ orderId, status }) => {
+  updateStatus: async ({ orderId, status }) => {
     const { data } = await axiosInstance.patch(
       `/admin/orders/${orderId}/status`,
       { status },
@@ -35,6 +40,13 @@ export const orderApi = {
 export const statsApi = {
   getDashboard: async () => {
     const { data } = await axiosInstance.get("/admin/stats")
+    return data
+  },
+}
+
+export const customerApi = {
+  getAll: async () => {
+    const { data } = await axiosInstance.get("/admin/customers")
     return data
   },
 }
